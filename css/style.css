@@ -1,0 +1,120 @@
+/* =====
+Import
+===== */
+
+@import url("https://use.typekit.net/hgp2pbx.css");
+
+/* =====
+Variables
+===== */
+
+:root {
+    /* Colours */
+    --black-1: #0A0A0A;
+    --black-2: #0E0E0E;
+    --black-3: #131313;
+    --grey-1: #333333;
+    --grey-2: #525252;
+    --grey-3: #666666;
+    --grey-4: #ADADAD;
+    --grey-5: #E0E0E0;
+    --white-1: #F5F5F5;
+    --white-2: #FAFAFA;
+    --white-3: #FFFFFF;
+    --cyan-1: #021211;
+    --cyan-2: #0F6C66;
+    --cyan-3: #16A298;
+    --cyan-4: #1BC5BA;
+    --cyan-5: #28E2D5;
+    --cyan-6: #4BE7DC;
+    --cyan-7: #6FEBE3;
+    --cyan-8: #93F0EA;
+    --cyan-9: #B7F5F1;
+    --cyan-10: #DBFAF8;
+    /* Typography */
+    --font-heading: 'byker', Helvetica, Arial, sans-serif;
+    --font-body: 'byker', Helvetica, Arial, sans-serif;
+    --font-size-display_large: 1rem;
+    --font-size-display_medium: 1rem;
+    --font-size-display_small: 1rem;
+    --font-size-main_heading: 1rem;
+    --font-size-sub_heading: 1rem;
+    --font-size-body: 1rem;
+    --font-size-sub_body: 1rem;
+    --font-weight-black: 900;
+    --font-weight-bold: 700;
+    --font-weight-normal: 400;
+    --font-weight-light: 300;
+    /* Padding */
+    --padding-large: 50px;
+    --padding-medium: 30px;
+    --padding: 15px;
+    --padding-small: 10px;
+    --padding-tight: 5px;
+    /* Margin */
+    --margin-v-large: 3.125rem;
+    --margin-v-medium: 1.875rem;
+    --margin-v: 1rem;
+    --margin-v-small: 0.625rem;
+    --margin-v-tight: 0.3125rem;
+    --margin-h-large: 50px;
+    --margin-h-medium: 30px;
+    --margin-h: 15px;
+    --margin-h-small: 10px;
+    --margin-h-tight: 5px;
+    /* Border-Radius */
+    --border_radius-large: 10px;
+    --border_radius-medium: 5px;
+    --border_radius-small: 3px;
+}
+
+/* =====
+Global
+===== */
+
+div {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-normal);
+    color: var(--black-3);
+}
+
+/* =====
+Meta
+===== */
+
+.metaTitle {
+}
+
+/* =====
+Body
+===== */
+
+/* Default Page */
+body.pageDefault {
+    background-color: var(--white-1);
+}
+
+/* =====
+Sections
+===== */
+
+/* Body Content */
+#bodyContent {
+    display: block;
+    width: 100%;
+}
+
+/* Section - Wide */
+.sectionWide {
+    max-width: 1200px;
+    padding: var(--padding);
+    margin: 0 auto;
+}
+
+/* Section - Slim */
+.sectionSlim {
+    max-width: 600px;
+    padding: var(--padding);
+    margin: 0 auto;
+}
