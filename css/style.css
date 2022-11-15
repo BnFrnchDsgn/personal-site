@@ -4,6 +4,11 @@ Import
 
 @import url("https://use.typekit.net/hgp2pbx.css");
 
+/* Material UI */
+.material-symbols-outlined {
+    line-height: inherit !important;
+}
+
 /* =====
 Variables
 ===== */
@@ -65,9 +70,16 @@ Variables
     --margin-h: 15px;
     --margin-h-small: 10px;
     --margin-h-tight: 5px;
+    /* Gap */
+    --gap-large: 3.125rem;
+    --gap-medium: 1.875rem;
+    --gap: 1rem;
+    --gap-small: 0.625rem;
+    --gap-tight: 0.3125rem;
     /* Borders */
     --border_weight-normal: 1px;
     /* Border-Radius */
+    --border_radius-full: 999px;
     --border_radius-large: 10px;
     --border_radius-medium: 5px;
     --border_radius-small: 3px;
@@ -120,8 +132,9 @@ Meta
 
 .metaType_Sample {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: left;
+    gap: var(--gap);
     padding: 0 var(--padding-medium) var(--padding-medium);
 }
 
@@ -220,12 +233,182 @@ Typography
 }
 
 /* Buttons */
-
 .buttonText {
     font-family: var(--font-body);
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-bold);
     line-height: 0;
+}
+a.button>span.material-symbols-outlined {
+    font-size: calc(var(--font-size-body) + 0.3em);
+}
+
+/* =====
+Links
+===== */
+
+/* Button */
+a.button {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-tight);
+    text-decoration: none;
+    color: var(--black-3);
+    width: fit-content;
+    padding: var(--padding-medium) var(--padding-large);
+    border: var(--border_weight-normal) solid var(--black-3);
+    border-radius: var(--border_radius-full);
+    -webkit-border-radius: var(--border_radius-full);
+    -moz-border-radius: var(--border_radius-full);
+    -ms-border-radius: var(--border_radius-full);
+    -o-border-radius: var(--border_radius-full);
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+a.button:hover {
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+/* Button - Solid */
+a.button.buttonSolid {
+    color: var(--white-3);
+    background-color: var(--black-3);
+}
+a.button.buttonSolid:hover {
+    color: var(--black-3);
+    background-color: transparent;
+}
+
+/* Button - Border */
+a.button.buttonBorder {
+    color: var(--black-3);
+    background-color: transparent;
+}
+a.button.buttonBorder:hover {
+    color: var(--white-3);
+    background-color: var(--black-3);
+}
+
+/* Button - Secondary */
+a.button.buttonSecondary {
+    color: var(--black-3);
+    background-color: transparent;
+    border: var(--border_weight-normal) solid transparent;
+}
+a.button.buttonSecondary:hover {
+    color: var(--black-3);
+    background-color: var(--grey-5);
+    border: var(--border_weight-normal) solid transparent;
+}
+
+/* Button - Animated */
+a.button.buttonAnimated::before,
+a.button.buttonAnimated::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: var(--border_weight-normal) solid transparent;
+    background-color: transparent;
+    border-radius: var(--border_radius-full);
+    -webkit-border-radius: var(--border_radius-full);
+    -moz-border-radius: var(--border_radius-full);
+    -ms-border-radius: var(--border_radius-full);
+    -o-border-radius: var(--border_radius-full);
+    transition: 0.4s ease-in;
+    -webkit-transition: 0.4s ease-in;
+    -moz-transition: 0.4s ease-in;
+    -ms-transition: 0.4s ease-in;
+    -o-transition: 0.4s ease-in;
+}
+a.button.buttonAnimated:hover::before,
+a.button.buttonAnimated:hover::after {
+    transition: 0.4s ease-out;
+    -webkit-transition: 0.4s ease-out;
+    -moz-transition: 0.4s ease-out;
+    -ms-transition: 0.4s ease-out;
+    -o-transition: 0.4s ease-out;
+}
+a.button.buttonBorder.buttonAnimated::before {
+    left: 0;
+    bottom: 0;
+    background-color: transparent;
+    animation: slide-out ease 0.3s !important;
+    -webkit-animation: slide-out ease 0.3s !important;
+    transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+}
+a.button.buttonBorder.buttonAnimated:hover {
+    background-color: transparent;
+}
+a.button.buttonBorder.buttonAnimated:hover::before {
+    background-color: var(--black-3);
+    animation: slide-in ease 0.5s !important;
+    -webkit-animation: slide-in ease 0.5s !important;
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1);
+}
+
+@keyframes slide-in {
+    0% {
+        right: 0;
+        transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    100% {
+        right: 0;
+        transform: scaleX(1);
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform-origin: left;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        right: 100%;
+        transform: scaleX(1);
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform-origin: right;
+    }
+
+    100% {
+        right: 100%;
+        transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        transform-origin: right;
+    }
 }
 
 /* =====
