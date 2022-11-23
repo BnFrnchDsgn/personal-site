@@ -32,7 +32,8 @@
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/BnFrnchDsgn/personal-site.git"
+      "url": "https://github.com/BnFrnchDsgn/personal-site.git",
+      "mypackage": "git+https://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:x-oauth-basic@github.com/BnFrnchDsgn/personal-site.git"
     },
     "bugs": {
       "url": "https://github.com/gatsbyjs/gatsby/issues"
