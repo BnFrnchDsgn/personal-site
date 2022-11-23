@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "personal-site",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Personal Site",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ben French <xbenfrench@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -28,14 +28,15 @@
   "devDependencies": {
     "prettier": "^2.7.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/BnFrnchDsgn/personal-site.git/index.html",
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/BnFrnchDsgn/personal-site.git",
+    "mypackage": "git+https://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:x-oauth-basic@github.com/BnFrnchDsgn/personal-site.git"
   },
   "scripts": {
     "build": "gatsby build",
