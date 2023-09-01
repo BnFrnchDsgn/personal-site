@@ -1028,7 +1028,7 @@ body.body {
 /* Default Page */
 body.pageDefault {
     background-color: var(--slate-1);
-    background-image: url('file:///C:/Users/Ben/Documents/GitHub/personal-site/assets/backgrounds/background-grid_line.png');
+    background-image: url('/assets/backgrounds/background-grid_line.png');
     background-size: 200px;
 }
 
