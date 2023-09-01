@@ -7,6 +7,9 @@
         ////
         ///////////////////
 
+        // Page Title
+        enableCustomPageTitle(); // Enables custom page titles
+
         // Page Load
         fadePageContentOnLoad(); // Fades page content in-and-out on load
 
@@ -34,6 +37,18 @@
         ////
         ///////////////////
 
+        // Page Titles
+        function enableCustomPageTitle() {
+            // Get the current page URL
+            var currentURL = window.location.href;
+
+            // Extract the page filename (without the .html extension)
+            var pageName = currentURL.split('/').pop().replace('.html', '');
+
+            // Update the page title with the pageName
+            $('title').text(pageName);
+        }
+
         // Page Load
         function fadePageContentOnLoad() {
             // Fade-in effect on page load
@@ -41,9 +56,16 @@
 
             // Fade-out effect on link click
             $('a').click(function (event) {
+                var href = $(this).attr('href'); // Get the link URL
+
+                // Check if the link should open in a new tab
+                if (event.ctrlKey || event.metaKey || $(this).attr('target') === '_blank') {
+                    // If it should open in a new tab, let the default behavior happen
+                    return;
+                }
+
                 event.preventDefault(); // Prevent the default link behavior
 
-                var href = $(this).attr('href'); // Get the link URL
                 $('body').removeClass('fade-in').addClass('fade-out'); // Apply the fade-out animation
 
                 setTimeout(function () {
