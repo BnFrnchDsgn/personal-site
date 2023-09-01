@@ -7,9 +7,6 @@
         ////
         ///////////////////
 
-        // Page Title
-        enableCustomPageTitle(); // Enables custom page titles
-
         // Page Load
         fadePageContentOnLoad(); // Fades page content in-and-out on load
 
@@ -36,18 +33,6 @@
         //// Functions
         ////
         ///////////////////
-
-        // Page Titles
-        function enableCustomPageTitle() {
-            // Get the current page URL
-            var currentURL = window.location.href;
-
-            // Extract the page filename (without the .html extension)
-            var pageName = currentURL.split('/').pop().replace('.html', '');
-
-            // Update the page title with the pageName
-            $('title').text(pageName);
-        }
 
         // Page Load
         function fadePageContentOnLoad() {
