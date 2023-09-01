@@ -1050,6 +1050,14 @@ Typography
     margin-bottom: 0;
 }
 
+@media only screen and (max-width: 549px) {
+
+    :is(h1, h2, h3, h4, h5, h6, p, li, a, span).displayLarge {
+        font-size: var(--font-size-display_medium);
+    }
+
+}
+
 /* Display Medium */
 :is(h1, h2, h3, h4, h5, h6, p, li, a, span).displayMedium {
     font-family: var(--font-heading);
