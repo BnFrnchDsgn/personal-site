@@ -1592,6 +1592,16 @@ Images
 
 }
 
+/* Featured Project Image */
+@media only screen and (max-width: 549px) {
+
+    .featuredImage>.image {
+        height: 200px;
+    }
+
+}
+
+
 /* Image Link */
 a.imageLink {
     position: relative;
