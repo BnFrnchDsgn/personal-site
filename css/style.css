@@ -2327,6 +2327,7 @@ Contact
     .sectionContact {
         grid-template-columns: 100%;
         gap: 10rem;
+        margin-top: 5rem !important;
     }
 
     .sectionContact>:is(.contact-messaging, .contact-form) {
