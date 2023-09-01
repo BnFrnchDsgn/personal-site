@@ -1,6 +1,8 @@
 (function ($) {
     $(document).ready(function () {
 
+        console.log("🚀 Welcome to my website 🌟");
+
         ///////////////////
         ////
         //// Function Index
