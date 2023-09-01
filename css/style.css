@@ -2872,6 +2872,14 @@ Details
     margin: 0;
 }
 
+@media only screen and (max-width: 549px) {
+
+    .projectList .project-name h2 {
+        font-size: var(--font-size-display_medium);
+    }
+
+}
+
 /* Programs Description */
 
 .projectList .project-description {
