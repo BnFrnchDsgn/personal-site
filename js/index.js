@@ -24,11 +24,11 @@
 
         // Cursor
         changeCursor(); // Changes cursor presentation
-        // addCursorElement(); // Adds additional cursor element
+        addCursorElement(); // Adds additional cursor element
 
         // Scroll & Mouse
-        // addScrollMovement(); // Adds slight movement to items on scroll
-        // enableShiftContent(); // Adds slight shift to page contents on mouse movement
+        addScrollMovement(); // Adds slight movement to items on scroll
+        enableShiftContent(); // Adds slight shift to page contents on mouse movement
 
         ///////////////////
         ////
