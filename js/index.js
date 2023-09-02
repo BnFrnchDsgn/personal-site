@@ -28,7 +28,7 @@
 
         // Scroll & Mouse
         addScrollMovement(); // Adds slight movement to items on scroll
-        enableShiftContent(); // Adds slight shift to page contents on mouse movement
+        // enableShiftContent(); // Adds slight shift to page contents on mouse movement
 
         ///////////////////
         ////
