@@ -327,65 +327,64 @@
         };
 
         function addCursorElement() {
-            // Create the cursor element
-            var cursor = $('<div class="cursor-circle"></div>');
-            $('body').append(cursor);
-        
-            // Function to update the cursor position
-            function updateCursorPosition(event) {
-                var scrollLeft = $(window).scrollLeft();
-                var scrollTop = $(window).scrollTop();
-                cursor.css({
-                    "top": event.pageY - scrollTop,
-                    "left": event.pageX - scrollLeft
+            // Adjusts squishy cursor dimensions and position based on the mouse position
+            $(document).mousemove(function (event) {
+                $(".cursor-circle").css({
+                    "top": event.pageY,
+                    "left": event.pageX
                 });
-                var x = event.pageX - scrollLeft - cursor.width() / 2;
-                var y = event.pageY - scrollTop - cursor.height() / 2;
-                cursor.css({
+                var circle = $(".cursor-circle");
+                var x = event.pageX - circle.offset().left - circle.width() / 2;
+                var y = event.pageY - circle.offset().top - circle.height() / 2;
+                circle.css({
                     "width": Math.abs(x),
                     "height": Math.abs(y)
                 });
-            }
-        
-            // Adjust cursor on mousemove
-            $(document).mousemove(updateCursorPosition);
-        
-            // Adjust cursor on scroll
-            $(window).scroll(updateCursorPosition);
-        
-            // Eases cursor to original dimensions when not moving
+            });
+
+            // Eases squishy cursor to original dimensions when not moving
             setInterval(function () {
-                if (cursor.width() != 25 || cursor.height() != 25) {
-                    cursor.css({
+                var circle = $(".cursor-circle");
+                if (circle.width() != 25 || circle.height() != 25) {
+                    circle.css({
                         "width": 25,
                         "height": 25
                     });
                 }
             }, 100);
-        
-            // Remove visibility of cursor when hovering over links and buttons
-            var elementsToHideCursor = $("a, button, .viewCursor");
-            elementsToHideCursor.mouseenter(function () {
-                cursor.css({
-                    "border-color": "transparent"
-                });
-            }).mouseleave(function () {
-                cursor.css({
-                    "border-color": "var(--white-1)"
-                });
+
+            // Removes visibility of squishy circle when hovering over links and buttons
+            $(document).ready(function () {
+                var circle = $(".cursor-circle");
+
+                $(window)
+                $(":is(a, button, .viewCursor")
+                    .mouseenter(function () {
+                        circle.css({
+                            "border-color": "transparent"
+                        });
+                    })
+                    .mouseleave(function () {
+                        circle.css({
+                            "border-color": "var(--white-1)"
+                        });
+                    });
+
+                $(window)
+                    .mousedown(function () {
+                        circle.css({
+                            transform: "scale(0.5) translate(-27.5%, -70%)"
+                        });
+                    })
+                    .mouseup(function () {
+                        circle.css({
+                            transform: "scale(1) translate(-50%, -50%)"
+                        });
+                    });
+
             });
-        
-            // Scale cursor on mousedown and mouseup
-            $(window).mousedown(function () {
-                cursor.css({
-                    transform: "scale(0.5) translate(-27.5%, -70%)"
-                });
-            }).mouseup(function () {
-                cursor.css({
-                    transform: "scale(1) translate(-50%, -50%)"
-                });
-            });
-        }        
+
+        };
 
         // Scroll
 
