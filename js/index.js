@@ -67,7 +67,7 @@
             // Variables to track scroll direction and menu visibility
             var lastScrollTop = 0;
             var menuVisible = true; // Assume the menu is initially visible
-        
+
             // Function to toggle menu visibility
             function toggleMenu(shouldHide) {
                 if (shouldHide) {
@@ -79,7 +79,7 @@
                 }
                 menuVisible = !shouldHide; // Update menu visibility state
             }
-        
+
             // Detect scroll and adjust menu visibility
             $(window).scroll(function () {
                 var currentScrollTop = $(this).scrollTop();
@@ -97,7 +97,7 @@
                 lastScrollTop = currentScrollTop;
             });
         }
-        
+
 
         function toggleMenuVisibility() {
             const $menuToggle = $('.navigation-toggle');
