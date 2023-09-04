@@ -66,19 +66,33 @@
        function showMobileMenuOnScroll() {
         // Adds attribute for adjusting menu visibility on scroll
         $('header').attr('scroll-direction', 'normal');
-
+    
         // Detect mobile window width, and then adjust scroll-direction attribute based on scroll direction
         var lastScrollTop = 0;
+        var header = $('header'); // Cache the header element for better performance
+        var menuVisible = true; // Track menu visibility
+    
         $(window).scroll(function () {
             var currentScrollTop = $(this).scrollTop();
             if (currentScrollTop > lastScrollTop) {
+                // Scrolling down
+                if (menuVisible) {
+                    header.hide(); // Hide the menu
+                    menuVisible = false;
+                }
                 $('header').attr('scroll-direction', 'downwards');
             } else {
+                // Scrolling up
+                if (!menuVisible) {
+                    header.show(); // Show the menu
+                    menuVisible = true;
+                }
                 $('header').attr('scroll-direction', 'upwards');
             }
             lastScrollTop = currentScrollTop;
         });
-    };
+    }
+    
 
     function toggleMenuVisibility() {
         const $menuToggle = $('.navigation-toggle');
