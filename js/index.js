@@ -64,39 +64,21 @@
        // Navigation
 
        function showMobileMenuOnScroll() {
-        // Variables to track scroll direction and menu visibility
+        // Adds attribute for adjusting menu visibility on scroll
+        $('header').attr('scroll-direction', 'normal');
+
+        // Detect mobile window width, and then adjust scroll-direction attribute based on scroll direction
         var lastScrollTop = 0;
-        var menuVisible = true; // Assume the menu is initially visible
-    
-        // Function to toggle menu visibility
-        function toggleMenu(shouldHide) {
-            if (shouldHide) {
-                // Hide the menu
-                $('header').slideUp();
-            } else {
-                // Show the menu
-                $('header').slideDown();
-            }
-            menuVisible = !shouldHide; // Update menu visibility state
-        }
-    
-        // Detect scroll and adjust menu visibility
         $(window).scroll(function () {
             var currentScrollTop = $(this).scrollTop();
             if (currentScrollTop > lastScrollTop) {
-                // Scrolling down, hide the menu
-                if (menuVisible) {
-                    toggleMenu(true);
-                }
+                $('header').attr('scroll-direction', 'downwards');
             } else {
-                // Scrolling up, show the menu
-                if (!menuVisible) {
-                    toggleMenu(false);
-                }
+                $('header').attr('scroll-direction', 'upwards');
             }
             lastScrollTop = currentScrollTop;
         });
-    }
+    };
 
     function toggleMenuVisibility() {
         const $menuToggle = $('.navigation-toggle');
