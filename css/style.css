@@ -1219,6 +1219,20 @@ ul.tag-list>li {
     background-color: var(--slate-2);
 }
 
+@media (pointer: fine) {
+
+    ul.tag-list>li:hover {
+        color: var(--white-1);
+        background-color: var(--slate-3);
+        transition: 0.2s ease;
+        -webkit-transition: 0.2s ease;
+        -moz-transition: 0.2s ease;
+        -ms-transition: 0.2s ease;
+        -o-transition: 0.2s ease;
+    }
+
+}
+
 /* Minimal List */
 
 ul.minimal-list {
@@ -1643,31 +1657,35 @@ a.imageLink::before {
     -o-transition: 0.3s ease-in;
 }
 
-a.imageLink:hover::before,
-a.imageLink:focus::before {
-    background-color: var(--slate-3);
-    filter: opacity(0.5);
-    -webkit-filter: opacity(0.5);
-    transition: 0.2s ease-out;
-    -webkit-transition: 0.2s ease-out;
-    -moz-transition: 0.2s ease-out;
-    -ms-transition: 0.2s ease-out;
-    -o-transition: 0.2s ease-out;
-}
+@media only screen and (min-width: 768px) {
 
-a.imageLink:hover::after,
-a.imageLink:focus::after {
-    color: var(--purple-2);
-    transform: translateX(0) translateY(0) rotate(0deg);
-    -webkit-transform: translateX(0) translateY(0) rotate(0deg);
-    -moz-transform: translateX(0) translateY(0) rotate(0deg);
-    -ms-transform: translateX(0) translateY(0) rotate(0deg);
-    -o-transform: translateX(0) translateY(0) rotate(0deg);
-    transition: 0.2s ease 0.2s;
-    -webkit-transition: 0.2s ease 0.2s;
-    -moz-transition: 0.2s ease 0.2s;
-    -ms-transition: 0.2s ease 0.2s;
-    -o-transition: 0.2s ease 0.2s;
+    a.imageLink:hover::before,
+    a.imageLink:focus::before {
+        background-color: var(--slate-3);
+        filter: opacity(0.5);
+        -webkit-filter: opacity(0.5);
+        transition: 0.2s ease-out;
+        -webkit-transition: 0.2s ease-out;
+        -moz-transition: 0.2s ease-out;
+        -ms-transition: 0.2s ease-out;
+        -o-transition: 0.2s ease-out;
+    }
+
+    a.imageLink:hover::after,
+    a.imageLink:focus::after {
+        color: var(--purple-2);
+        transform: translateX(0) translateY(0) rotate(0deg);
+        -webkit-transform: translateX(0) translateY(0) rotate(0deg);
+        -moz-transform: translateX(0) translateY(0) rotate(0deg);
+        -ms-transform: translateX(0) translateY(0) rotate(0deg);
+        -o-transform: translateX(0) translateY(0) rotate(0deg);
+        transition: 0.2s ease 0.2s;
+        -webkit-transition: 0.2s ease 0.2s;
+        -moz-transition: 0.2s ease 0.2s;
+        -ms-transition: 0.2s ease 0.2s;
+        -o-transition: 0.2s ease 0.2s;
+    }
+
 }
 
 /* Figures */
@@ -2871,10 +2889,6 @@ Details
     -o-transition: 0.4s ease;
 }
 
-.projectList .project-name a:is(:focus, :hover) {
-    color: var(--purple-2);
-}
-
 .projectList .project-name h2 {
     font-family: var(--font-heading);
     font-size: var(--font-size-display_small);
@@ -2888,6 +2902,14 @@ Details
     letter-spacing: inherit;
     text-transform: uppercase;
     margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .projectList .project-name a:is(:focus, :hover) {
+        color: var(--purple-2);
+    }
+
 }
 
 @media only screen and (max-width: 549px) {
