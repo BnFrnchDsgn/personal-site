@@ -13,7 +13,7 @@
         fadePageContentOnLoad(); // Fades page content in-and-out on load
 
         // Navigation
-        showMobileMenuOnScroll(); // Detects scroll direction and hides or shows mobile menu on scroll movement
+        // showMobileMenuOnScroll(); // Detects scroll direction and hides or shows mobile menu on scroll movement
         toggleMenuVisibility(); // Toggle element for showing mobile menu navigation
 
         // Tabs
