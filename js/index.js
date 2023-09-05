@@ -1,7 +1,7 @@
 (function ($) {
     $(document).ready(function () {
 
-        console.log("🚀 Welcome to my website 🌟");
+        console.log("🚀 Welcome to my website! If you're reading this, it means you're probably curious about how my site is put together. If you'd like to chat about web development, projects, or how the Calgary Flames are performing this season — get in touch with me!");
 
         ///////////////////
         ////
