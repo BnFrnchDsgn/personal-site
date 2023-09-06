@@ -1224,14 +1224,14 @@ ul.tag-list>li {
     -o-transition: 0.2s ease;
 }
 
-@media (pointer: fine) {
+/* @media (pointer: fine) {
 
     ul.tag-list>li:hover {
         color: var(--white-1);
         background-color: var(--slate-3);
     }
 
-}
+} */
 
 /* Minimal List */
 
