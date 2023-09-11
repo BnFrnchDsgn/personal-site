@@ -19,7 +19,7 @@ Variables
 
 :root {
     /* Colours */
-    --black-1: #0A0A0A;
+    --black-1: #050505;
     --black-2: #0E0E0E;
     --black-3: #131313;
     --grey-1: #333333;
@@ -1027,7 +1027,7 @@ body.body {
 
 /* Default Page */
 body.pageDefault {
-    background-color: var(--slate-1);
+    background-color: var(--black-1);
     background-image: url('/assets/backgrounds/background-grid_line.png');
     background-size: 200px;
 }
