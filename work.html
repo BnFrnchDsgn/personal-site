@@ -43,7 +43,8 @@
 
       <div class="siteHeader-brandmark">
         <a href="/" title="Home">
-          <img class="header-logo" src="assets/brandmarks/ben_french-logo.png" width="100" height="auto" alt="Ben French">
+          <img class="header-logo" src="assets/brandmarks/ben_french-logo.png" width="100" height="auto"
+            alt="Ben French">
         </a>
       </div>
 
@@ -458,16 +459,28 @@
 
   <script>
     $(document).ready(function () {
+      var scrollPositionKey = 'scrollPosition';
+      var fiveMinutes = 5 * 60 * 1000; // 5 minutes in milliseconds
+
       // Check if scroll position is stored in local storage
-      if (localStorage.getItem('scrollPosition')) {
-        var scrollPosition = localStorage.getItem('scrollPosition');
-        $(window).scrollTop(scrollPosition);
+      if (localStorage.getItem(scrollPositionKey)) {
+        var storedTime = localStorage.getItem(scrollPositionKey + '_time');
+        var currentTime = new Date().getTime();
+        if (currentTime - storedTime < fiveMinutes) {
+          var scrollPosition = localStorage.getItem(scrollPositionKey);
+          $(window).scrollTop(scrollPosition);
+        } else {
+          // Clear stored scroll position if it's older than 5 minutes
+          localStorage.removeItem(scrollPositionKey);
+          localStorage.removeItem(scrollPositionKey + '_time');
+        }
       }
 
       // Store scroll position when the user scrolls
       $(window).scroll(function () {
         var scrollPosition = $(window).scrollTop();
-        localStorage.setItem('scrollPosition', scrollPosition);
+        localStorage.setItem(scrollPositionKey, scrollPosition);
+        localStorage.setItem(scrollPositionKey + '_time', new Date().getTime());
       });
     });
   </script>
