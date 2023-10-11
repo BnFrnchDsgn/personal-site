@@ -10,7 +10,7 @@
         ///////////////////
 
         // Page Load
-        fadePageContentOnLoad(); // Fades page content in-and-out on load
+        // fadePageContentOnLoad(); // Fades page content in-and-out on load
 
         // Navigation
         showMobileMenuOnScroll(); // Detects scroll direction and hides or shows mobile menu on scroll movement
