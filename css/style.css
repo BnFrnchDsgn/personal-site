@@ -1004,7 +1004,7 @@ Page Containers
 Body
 ===== */
 
-body {
+/* body {
     opacity: 0;
     transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
@@ -1019,7 +1019,7 @@ body.fade-in {
 
 body.fade-out {
     opacity: 0;
-}
+} */
 
 body.body {
     position: relative;
