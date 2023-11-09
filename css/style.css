@@ -1907,12 +1907,20 @@ Project Sections
         margin: 0 auto 8rem var(--margin-h-medium);
     }
 
+    .section-content_wrapper>.projectDetails:nth-child(n+2) {
+        margin-bottom: var(--margin-v-medium);
+    }
+
 }
 
 @media only screen and (max-width: 767px) {
 
     .projectDetails {
         margin: 0 auto var(--margin-v-large);
+    }
+
+    .section-content_wrapper>.projectDetails:nth-child(n+2) {
+        margin-bottom: var(--margin-v);
     }
 
 }
