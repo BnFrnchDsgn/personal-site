@@ -1908,7 +1908,7 @@ Project Sections
     }
 
     .section-content_wrapper>.projectDetails:nth-child(n+2) {
-        margin-bottom: var(--margin-v-medium);
+        margin-bottom: var(--margin-v-large);
     }
 
 }
@@ -1920,7 +1920,7 @@ Project Sections
     }
 
     .section-content_wrapper>.projectDetails:nth-child(n+2) {
-        margin-bottom: var(--margin-v);
+        margin-bottom: var(--margin-v-medium);
     }
 
 }
