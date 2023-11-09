@@ -1198,13 +1198,6 @@ pre {
     -o-border-radius: var(--border_radius-small);
 }
 
-/* Project Details Lists */
-.projectDetails ul {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-}
-
 /* Tag List */
 ul.tag-list {
     display: flex;
