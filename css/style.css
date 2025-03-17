@@ -3084,7 +3084,7 @@ Cursor
             -o-transition: all 0.2s ease;
         }
 
-        body.remove-cursor .cursor-circle {
+        /* body.remove-cursor .cursor-circle {
             pointer-events: none;
             position: absolute;
             z-index: 0;
@@ -3110,7 +3110,7 @@ Cursor
             -moz-transition: 0.15s all ease-out;
             -ms-transition: 0.15s all ease-out;
             -o-transition: 0.15s all ease-out;
-        }
+        } */
 
     }
 
