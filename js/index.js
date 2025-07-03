@@ -1,440 +1,250 @@
 (function ($) {
     $(document).ready(function () {
 
-        console.log("🚀 Welcome to my website! If you're reading this, it means you're probably curious about how my site is put together. If you'd like to chat about web development, projects, or how the Calgary Flames are performing this season — get in touch with me!");
-
         ///////////////////
         ////
         //// Function Index
         ////
         ///////////////////
 
-        // Page Load
-        // fadePageContentOnLoad(); // Fades page content in-and-out on load
+        // Cursor Interactions
+        gradientBorder(); // Modifies linear-gradient direction based on cursor location
+        cursorCircle(); // Adds a circle element to follow cursor that interacts with select elements
+        cursorShift(); // Adds slight movement to elements based on cusror location
+        cursor3D(); // Adds slight 3D effect based on cursor location
 
-        // Navigation
-        showMobileMenuOnScroll(); // Detects scroll direction and hides or shows mobile menu on scroll movement
-        toggleMenuVisibility(); // Toggle element for showing mobile menu navigation
+        // Scroll Effects
+        scrollEaseIn(); // Reveals content on scroll or page-load
+        timelineEase(); // Adds a ease scroll effect for the timeline parts on click
 
-        // Tabs
-        enableTabs(); // JS required for tab functionality
+        // Header
+        enableMobileMenu(); // Enables click-to-toggle functionality for displaying the mobile menu
 
-        // Lightbox
-        displayLightbox(); // Displays image in lightbox presentation when clicked
-
-        // Cursor
-        changeCursor(); // Changes cursor presentation
-        // addCursorElement(); // Adds additional cursor element
-
-        // Scroll & Mouse
-        addScrollMovement(); // Adds slight movement to items on scroll
-        //enableShiftContent(); // Adds slight shift to page contents on mouse movement
 
         ///////////////////
         ////
-        //// Functions
+        //// Function List
         ////
-        ///////////////////
+        //////////////////
+        ////
 
-        // Page Load
-        function fadePageContentOnLoad() {
-            // Function to apply the fade-in effect
-            function applyFadeInEffect() {
-                $('body').addClass('fade-in');
-            }
-
-            // Function to apply the fade-out effect
-            function applyFadeOutEffect(href) {
-                $('body').removeClass('fade-in').addClass('fade-out');
-                setTimeout(function () {
-                    window.location.href = href;
-                }, 300);
-            }
-
-            // Function to handle link clicks
-            function handleLinkClick(event) {
-                var href = $(this).attr('href');
-                if (event.ctrlKey || event.metaKey || $(this).attr('target') === '_blank') {
-                    return;
-                }
-                event.preventDefault();
-                applyFadeOutEffect(href);
-            }
-
-            // Function to check window width and apply the effects
-            function checkWindowSize() {
-                if ($(window).width() >= 767) {
-                    applyFadeInEffect();
-                    $('a').on('click', handleLinkClick);
-                } else {
-                    $('a').off('click', handleLinkClick);
-                }
-            }
-
-            // Check on load
-            $(document).ready(function () {
-                checkWindowSize();
-            });
-
-            // Check on resize
-            $(window).resize(function () {
-                checkWindowSize();
+        function gradientBorder() {
+            $(document).on('mousemove', function (e) {
+                $('.gradientBorder').each(function () {
+                    const offset = $(this).offset();
+                    const width = $(this).outerWidth();
+                    const height = $(this).outerHeight();
+                    const centerX = offset.left + width / 2;
+                    const centerY = offset.top + height / 2;
+                    const x = e.pageX - centerX;
+                    const y = e.pageY - centerY;
+                    const angle = Math.atan2(y, x) * (180 / Math.PI);
+        
+                    // Normalize angle to 0-360
+                    const normalizedAngle = (angle + 360) % 360;
+        
+                    const gradient = `linear-gradient(${normalizedAngle}deg, rgba(229,229,229,1) 0%, rgba(169,167,167,1) 20%, rgba(255,255,255,1) 50%, rgba(169,167,167,1) 80%, rgba(229,229,229,1) 100%)`;
+        
+                    $(this).css('--metal-gradient-linear', gradient);
+                });
             });
         }
 
-        // Navigation
+        function cursorCircle() {
+            const $circle = $('<div class="cursorCircle"></div>');
+            $('body').append($circle);
 
-        function showMobileMenuOnScroll() {
-            // Adds attribute for adjusting menu visibility on scroll
-            $('header').attr('scroll-direction', 'normal');
+            let isFilling = false;
 
-            // Detect mobile window width, and then adjust scroll-direction attribute based on scroll direction
-            var lastScrollTop = 0;
-            $(window).scroll(function () {
-                var currentScrollTop = $(this).scrollTop();
-                if (currentScrollTop > lastScrollTop) {
-                    $('header').attr('scroll-direction', 'downwards');
-                } else {
-                    $('header').attr('scroll-direction', 'upwards');
-                }
-                lastScrollTop = currentScrollTop;
-            });
-        };
+            $(document).on('mousemove', function (e) {
+                const mouseX = e.pageX;
+                const mouseY = e.pageY;
 
-        function toggleMenuVisibility() {
-            const $menuToggle = $('.navigation-toggle');
-            const $menuNavigation = $('.navigation_list');
-
-            $(document).ready(function () {
-                // Show the menu navigation after a delay of 0.5 seconds
-                setTimeout(function () {
-                    $menuNavigation.removeClass('hidden');
-                }, 500);
-            });
-
-            $menuToggle.on("click", function () {
-                if ($(this).attr('mobile_menu-visibility') === 'hidden') {
-                    $(this).attr('mobile_menu-visibility', 'visible');
-                    $menuNavigation.attr('mobile_menu-visibility', 'visible');
-                    $('body').attr('mobile_menu-visibility', 'visible');
-                } else {
-                    $(this).attr('mobile_menu-visibility', 'hidden');
-                    $menuNavigation.attr('mobile_menu-visibility', 'hidden');
-                    $('body').attr('mobile_menu-visibility', 'hidden');
-                }
-            });
-        };
-
-        // Tabs
-
-        function enableTabs() {
-            // Check if .layoutTabs element exists
-            if (!$('.layoutTabs').length) {
-                return; // Exit the function if the element doesn't exist
-            }
-
-            // Tab button functionality
-            $(".tab-button").click(function () {
-                $(".tab-button").removeClass("active"); // Remove 'active' class from all tab buttons
-                $(this).addClass("active"); // Add 'active' class to clicked tab button
-
-                var count = $(this).index() - 1;
-                $(".tab-content").css("display", "none");
-                $(".tab-content").eq(count).css("display", "initial");
-
-                // Move active-highlight element
-                var buttonWidth = $(this).outerWidth();
-                var buttonPosition = $(this).position().left;
-                $(".active-highlight").css({
-                    "width": buttonWidth,
-                    "transform": "translateX(" + buttonPosition + "px)"
-                });
-            });
-
-            // Set minimum height on load and window resize     
-            function setMinHeight() {
-                var maxHeight = 0;
-                $(".tab-content").each(function () {
-                    var height = $(this).outerHeight();
-                    if (height > maxHeight) {
-                        maxHeight = height;
-                    }
-                });
-                $(".tab-contents").css("min-height", maxHeight);
-            };
-
-            $(document).ready(function () {
-                setMinHeight();
-                $(window).on("resize", setMinHeight);
-            });
-
-
-            // Set initial position and width of active-highlight
-            var firstButtonWidth = $(".tab-button:first").outerWidth();
-            var firstButtonPosition = $(".tab-button:first").position().left;
-            $(".active-highlight").css({
-                "width": firstButtonWidth,
-                "transform": "translateX(" + firstButtonPosition + "px)"
-            });
-
-            // Set first tab-button as active on page load
-            $(".tab-button:first").addClass("active");
-        }
-
-        // Lightbox
-
-        function displayLightbox() {
-            // Check if .lightboxContainer element exists
-            if (!$('.imageLightbox').length) {
-                return; // Exit the function if the element doesn't exist
-            }
-
-            // Create lightbox container
-            $('<div class="lightboxContainer hidden"><div class="lightboxContainer-content_wrapper"><div class="lightbox-gallery"><div class="lightbox-main_image"><img class="image" src="" width="100%" height="auto"></div><div class="lightbox-other_images"></div></div></div></div>').prependTo('body');
-
-            // Assign lightbox variables
-            const $lightboxContainer = $('.lightboxContainer');
-            const $lightboxGallery = $('.lightbox-gallery');
-            const $lightboxMainImage = $('.lightbox-main_image>img');
-
-            // Loop through each element with class 'imageLightbox'
-            $('.imageLightbox').each(function () {
-                let $lightboxImageSrc = $(this).attr('src');
-                let $lightboxOtherImage = $('<img class="image imageLightbox" src="' + $lightboxImageSrc + '" width="100%" height="auto">');
-                $('.lightbox-other_images').append($lightboxOtherImage);
-
-                // Add 'lightboxVisible' class if image src matches lightboxMainImage src
-                if ($lightboxImageSrc === $lightboxMainImage.attr('src')) {
-                    $lightboxOtherImage.addClass('lightboxVisible');
-                }
-            });
-
-            // Replace main gallery image on click
-            $('.imageLightbox').on('click', function () {
-                $lightboxMainImage.attr('src', $(this).attr('src'));
-
-                // Add 'lightboxVisible' class to matching image in .lightbox-other_images container
-                $('.lightbox-other_images img').removeClass('lightboxVisible');
-                $('.lightbox-other_images img[src="' + $(this).attr('src') + '"]').addClass('lightboxVisible');
-
-                // Show lightbox container
-                if (!$lightboxGallery.hasClass('visible')) {
-                    $lightboxContainer.removeClass('hidden');
-                    $lightboxGallery.addClass('visible');
-
-                    // Center lightbox gallery
-                    let top = Math.max(($(window).height() - $lightboxGallery.outerHeight()) / 2, 0);
-                    let left = Math.max(($(window).width() - $lightboxGallery.outerWidth()) / 2, 0);
-                    $lightboxGallery.css({
-                        top: top,
-                        left: left
+                if (!isFilling) {
+                    $circle.css({
+                        left: mouseX + 'px',
+                        top: mouseY + 'px',
+                        width: '2rem',
+                        height: '2rem',
+                        borderRadius: '50%',
+                        transform: 'translate(-75%, -75%)'
                     });
                 }
-            });
 
-            // Hide lightbox container on click outside of lightbox gallery
-            $lightboxContainer.on('click', function (event) {
-                if ($lightboxGallery.hasClass('visible') && !$(event.target).closest('.lightbox-gallery').length) {
-                    $lightboxContainer.addClass('hidden');
-                    $lightboxGallery.removeClass('visible');
-                }
-            });
-        };
+                let filled = false;
 
-        // Cursor
+                $('.cursorFill').each(function () {
+                    const $el = $(this);
+                    const offset = $el.offset();
+                    const width = $el.outerWidth();
+                    const height = $el.outerHeight();
 
-        function changeCursor() {
-            // Adds class to <body> to remove cursor
-            $('body').addClass('remove-cursor');
+                    const left = offset.left;
+                    const right = offset.left + width;
+                    const top = offset.top;
+                    const bottom = offset.top + height;
 
-            // Initialize cursor styling
-            $(document).ready(function () {
-                var cursor = $(".cursor");
+                    if (mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom) {
+                        const borderRadius = $el.css('border-radius');
 
-                $(window).mousemove(function (e) {
-                    cursor.css({
-                        top: e.clientY - cursor.height() / 2,
-                        left: e.clientX - cursor.width() / 2
-                    });
-                });
-
-                $(window)
-                    .mouseleave(function () {
-                        cursor.css({
-                            opacity: "0"
-                        });
-                    })
-                    .mouseenter(function () {
-                        cursor.css({
-                            opacity: "1"
-                        });
-                    });
-
-                // Adjusts cursor to circle when hovering over links and buttons
-                $(":is(.viewCursor, button)")
-                    .mouseenter(function () {
-                        cursor.addClass('link-hover');
-                        cursor.css({
-                            width: "25px",
-                            height: "25px",
-                            "border-bottom": "20px solid transparent",
-                            "background-color": "var(--slate-4)",
-                            transform: "scale(1.5) rotate(0deg) translateY(-12.5px) translateX(-12.5px)",
-                            "border-radius": "50%",
-                            "mix-blend-mode": "hard-light"
-                        });
-                    })
-                    .mouseleave(function () {
-                        cursor.removeClass('link-hover');
-                        cursor.css({
-                            width: "0",
-                            height: "0",
-                            "border-bottom": "24px solid var(--coral-1)",
-                            "background-color": "transparent",
-                            transform: "scale(1) rotate(-45deg)",
-                            "border-radius": "0",
-                            "mix-blend-mode": "normal"
-                        });
-                    });
-
-                // Adjusts cursor when interacting with header links
-                $(":is(header a, .body>a, .lightboxContainer .imageLightbox")
-                    .mouseenter(function () {
-                        cursor.css({
-                            transform: "scale(1) rotate(-20deg)",
-                            "mix-blend-mode": "normal",
-                        });
-                    })
-                    .mouseleave(function () {
-                        cursor.css({
-                            transform: "scale(1) rotate(-45deg)",
-                            "mix-blend-mode": "hard-light"
-                        });
-                    });
-
-                // Reduces cursor sizes on mousedown
-                $(window)
-                    .mousedown(function () {
-                        cursor.css({
-                            transform: "scale(0.8) rotate(0deg)"
-                        });
-                    })
-                    .mouseup(function () {
-                        cursor.css({
-                            transform: "scale(1) rotate(-45deg)"
-                        });
-                    });
-            });
-
-        };
-
-        function addCursorElement() {
-            // Adjusts squishy cursor dimensions and position based on the mouse position
-            $(document).mousemove(function (event) {
-                $(".cursor-circle").css({
-                    "top": event.pageY,
-                    "left": event.pageX
-                });
-                var circle = $(".cursor-circle");
-                var x = event.pageX - circle.offset().left - circle.width() / 2;
-                var y = event.pageY - circle.offset().top - circle.height() / 2;
-                circle.css({
-                    "width": Math.abs(x),
-                    "height": Math.abs(y)
-                });
-            });
-
-            // Eases squishy cursor to original dimensions when not moving
-            setInterval(function () {
-                var circle = $(".cursor-circle");
-                if (circle.width() != 25 || circle.height() != 25) {
-                    circle.css({
-                        "width": 25,
-                        "height": 25
-                    });
-                }
-            }, 100);
-
-            // Removes visibility of squishy circle when hovering over links and buttons
-            $(document).ready(function () {
-                var circle = $(".cursor-circle");
-
-                $(window)
-                $(":is(a, button, .viewCursor")
-                    .mouseenter(function () {
-                        circle.css({
-                            "border-color": "transparent"
-                        });
-                    })
-                    .mouseleave(function () {
-                        circle.css({
-                            "border-color": "var(--white-1)"
-                        });
-                    });
-
-                $(window)
-                    .mousedown(function () {
-                        circle.css({
-                            transform: "scale(0.5) translate(-27.5%, -70%)"
-                        });
-                    })
-                    .mouseup(function () {
-                        circle.css({
-                            transform: "scale(1) translate(-50%, -50%)"
-                        });
-                    });
-
-            });
-
-        };
-
-        // Scroll
-
-        function addScrollMovement() {
-            var container = $('.scrollMovement');
-            var items = container.find('.scrollMovement-item');
-            var scrollAmount = 2;
-
-            $(window).on('scroll', function () {
-                var scrollDirection = $(this).scrollTop() > $(this).data('scroll-position') ? 'down' : 'up';
-                $(this).data('scroll-position', $(this).scrollTop());
-
-                items.each(function () {
-                    if (isItemVisible($(this))) {
-                        var currentTop = parseInt($(this).css('top'));
-                        if (scrollDirection === 'down') {
-                            $(this).css('top', (currentTop + scrollAmount) + 'px');
-                        } else {
-                            $(this).css('top', (currentTop - scrollAmount) + 'px');
+                        filled = true;
+                        if (!isFilling) {
+                            isFilling = true;
+                            $circle.addClass('is-filling');
                         }
+
+                        $('.cursorFill').removeClass('is-filling'); // Remove from all
+                        $el.addClass('is-filling');
+
+                        $circle.css({
+                            left: offset.left + width / 2 + 'px',
+                            top: offset.top + height / 2 + 'px',
+                            width: width + 'px',
+                            height: height + 'px',
+                            borderRadius: borderRadius,
+                            transform: 'translate(-50%, -50%)'
+                        });
+                        return false; // break loop
                     }
                 });
-            });
 
-            function isItemVisible(item) {
-                var itemTop = item.offset().top;
-                var itemBottom = itemTop + item.outerHeight();
-                var containerTop = container.offset().top;
-                var containerBottom = containerTop + container.outerHeight();
-                return (itemTop >= containerTop && itemTop <= containerBottom) || (itemBottom >= containerTop && itemBottom <= containerBottom);
-            }
-        };
+                if (!filled && isFilling) {
+                    isFilling = false;
+                    $circle.removeClass('is-filling');
+                    $('.cursorFill').removeClass('is-filling');
+                }
 
-        function enableShiftContent() {
+                // NEW: Check for cursorHighlight elements
+                let isHighlighting = false;
+                $('.cursorHighlight').each(function () {
+                    const $el = $(this);
+                    const offset = $el.offset();
+                    const width = $el.outerWidth();
+                    const height = $el.outerHeight();
 
-            var windowWidth = $(window).width(); // Get the initial window width
+                    const left = offset.left;
+                    const right = offset.left + width;
+                    const top = offset.top;
+                    const bottom = offset.top + height;
 
-            $(window).on('resize', function () {
-                windowWidth = $(window).width(); // Update the window width on resize
-            });
+                    if (mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom) {
+                        isHighlighting = true;
+                        return false; // break loop early
+                    }
+                });
 
-            $(document).mousemove(function (event) {
-                if (windowWidth >= 768) { // Check if the window width is 768px or wider
-                    var xPos = -(event.clientX / $(window).width()) * 10; // Adjust the sensitivity by changing the multiplier
-                    var yPos = -(event.clientY / $(window).height()) * 10;
-                    $('.shift-content').css('transform', 'translate(' + xPos + 'px, ' + yPos + 'px)');
+                if (isHighlighting) {
+                    $circle.addClass('is-highlighting');
+                } else {
+                    $circle.removeClass('is-highlighting');
                 }
             });
+        }
+
+        function cursorShift() {
+            const sensitivity = 0.02;
+            const $shiftContainers = $('.cursorShift, .cursorShiftInverse');
+
+            $(document).on('mousemove', function(e) {
+                const winW = $(window).width();
+                const winH = $(window).height();
+                const offsetX = (e.pageX - winW / 3) * sensitivity;
+                const offsetY = (e.pageY - winH / 3) * sensitivity;
+
+                $shiftContainers.each(function() {
+                    const $el = $(this);
+                    const isInverse = $el.hasClass('cursorShiftInverse');
+                    const x = isInverse ? -offsetX : offsetX;
+                    const y = isInverse ? -offsetY : offsetY;
+
+                    $el.css('transform', `translate(${x}px, ${y}px)`);
+                });
+            });
+        }
+
+        function cursor3D() {
+            
+        $('.cursor3D').each(function () {
+            const $el = $(this);
+
+            $el.on('mousemove', function (e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Calculate rotation (subtle)
+            const rotateX = ((y - centerY) / centerY) * -15; // up/down tilt
+            const rotateY = ((x - centerX) / centerX) * 15;  // left/right tilt
+
+            $el.css('transform', `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
+            });
+
+            $el.on('mouseleave', function () {
+            $el.css('transform', 'rotateX(0deg) rotateY(0deg)');
+            });
+        });
+
+        }
+
+        function scrollEaseIn() {
+
+            function checkVisibility() {
+                $('.scrollEaseIn').each(function () {
+                const $el = $(this);
+                const rect = this.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible && !$el.hasClass('visible')) {
+                    $el.addClass('visible');
+
+                    // Remove scrollEaseIn class after 3s
+                    setTimeout(() => {
+                    $el.removeClass('scrollEaseIn');
+                    }, 1500);
+                }
+                });
+            }
+
+            $(window).on('scroll resize load', checkVisibility);
+            checkVisibility();
+
+        }
+
+        function timelineEase() {
+
+            $('.entryTimeline').on('click', '.cursorFill, .current', function () {
+                const targetId = $(this).data('target');
+                const $target = $('#' + targetId);
+                
+                if ($target.length) {
+                    window.scrollTo({
+                        top: $target.offset().top - 50,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+        }
+        
+        function enableMobileMenu() {
+
+        $('.menuControl button').on('click', function () {
+            const $button = $(this);
+            const $menu = $('.menuList');
+
+            $button.toggleClass('closed open');           // Toggle button state
+            $menu.toggleClass('hidden visible');          // Toggle menu visibility
+
+            const isMenuOpen = $button.hasClass('open') && $menu.hasClass('visible');
+
+            if (isMenuOpen) {
+            $('body').css('overflow', 'hidden');
+            } else {
+            $('body').css('overflow', '');
+            }
+        });
 
         }
 
