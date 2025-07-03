@@ -866,6 +866,7 @@ Sections
     height: auto;
     border: 1px solid transparent;
     border-radius: 21px;
+    background-color: var(--black);
 }
 
 .sectionImageHeader .gradientBorder {
@@ -942,6 +943,7 @@ Sections
     height: auto;
     border: 1px solid transparent;
     border-radius: 21px;
+    background-color: var(--black);
 }
 
 .sectionImageCaption .gradientBorder {
