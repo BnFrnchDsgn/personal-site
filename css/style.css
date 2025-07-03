@@ -63,6 +63,7 @@ Variables
     :root {
         --font-size-display_large: 2.4rem;
         --font-size-display_medium: 2rem;
+        --font-size-display_small: 1.8rem;
         --font-size-main_heading: 1.2rem;
     }
 
