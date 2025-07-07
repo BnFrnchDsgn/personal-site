@@ -12,6 +12,7 @@
         cursorCircle(); // Adds a circle element to follow cursor that interacts with select elements
         cursorShift(); // Adds slight movement to elements based on cusror location
         cursor3D(); // Adds slight 3D effect based on cursor location
+        cursorPreview(); // Adjusts cursor to feature a preview on hover
 
         // Scroll Effects
         scrollEaseIn(); // Reveals content on scroll or page-load
@@ -186,6 +187,36 @@
             });
         });
 
+        }
+
+        function cursorPreview() {
+            $(document).on('mouseenter', '.cursorPreview', function () {
+                const $circle = $('.cursorCircle');
+                const previewImage = $(this).data('preview');
+
+                if (previewImage) {
+                    $circle.css({
+                        width: '4rem',
+                        height: '4rem',
+                        backgroundImage: `url(${previewImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }).addClass('is-previewing');
+                }
+            });
+
+            $(document).on('mouseleave', '.cursorPreview', function () {
+                const $circle = $('.cursorCircle');
+                $circle.css({
+                    width: '2rem',
+                    height: '2rem',
+                    backgroundImage: '',
+                    backgroundSize: '',
+                    backgroundPosition: '',
+                    backgroundRepeat: ''
+                }).removeClass('is-previewing');
+            });
         }
 
         function scrollEaseIn() {

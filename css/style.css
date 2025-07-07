@@ -63,7 +63,6 @@ Variables
     :root {
         --font-size-display_large: 2.4rem;
         --font-size-display_medium: 2rem;
-        --font-size-display_small: 1.8rem;
         --font-size-main_heading: 1.2rem;
     }
 
@@ -355,6 +354,17 @@ Micro-Interactions
     transition: transform 0.2s ease;
     transform-style: preserve-3d;
     will-change: transform;
+}
+
+/* Cursor Preview */
+
+.cursorCircle.is-previewing {
+    width: 16rem !important;
+    height: 16rem !important;
+    transition:
+        width 0.2s ease,
+        height 0.2s ease,
+        background-image 0.2s;
 }
 
 /* Scroll Ease In */
@@ -867,7 +877,6 @@ Sections
     height: auto;
     border: 1px solid transparent;
     border-radius: 21px;
-    background-color: var(--black);
 }
 
 .sectionImageHeader .gradientBorder {
@@ -944,7 +953,6 @@ Sections
     height: auto;
     border: 1px solid transparent;
     border-radius: 21px;
-    background-color: var(--black);
 }
 
 .sectionImageCaption .gradientBorder {
@@ -1247,7 +1255,7 @@ Sections
     cursor: default;
     color: var(--grey-4);
     font-family: var(--font-body);
-    font-size: var(--font-size-main_heading);
+    font-size: var(--font-size-display_small);
     margin: 0;
     text-align: center;
 }
@@ -1850,6 +1858,177 @@ Sections
 
     .sectionWorkAll .workList {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+/* Work Table */
+
+.sectionWorkTable {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: calc(100% - 2rem);
+    max-width: var(--max-content_width);
+    margin: 6rem auto 12rem;
+}
+
+.sectionWorkTable .tableSummary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium);
+}
+
+.sectionWorkTable .tableSummary h3 {
+    cursor: default;
+    color: var(--grey-4);
+    font-family: var(--font-body);
+    font-size: var(--font-size-display_small);
+    margin: 0;
+}
+
+.sectionWorkTable .tableSummary p {
+    cursor: default;
+    color: var(--grey-4);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    margin: 0;
+}
+
+.sectionWorkTable .tableList {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionWorkTable .listHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border_radius-full);
+    border: var(--border_weight-normal) solid var(--grey-1);
+    margin: 0 0 var(--spacing-medium);
+}
+
+.sectionWorkTable .listHeader div {
+    padding: var(--spacing) var(--spacing-medium);
+}
+
+.sectionWorkTable .listHeader p {
+    cursor: default;
+    color: var(--grey-2);
+    font-size: var(--font-size-body);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: left;
+    margin: 0;
+}
+
+.sectionWorkTable .listBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionWorkTable .listBody .bodyRow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing);
+    padding: var(--spacing-medium);
+    border-bottom: var(--border_weight-normal) solid var(--grey-1);
+}
+
+.sectionWorkTable .listBody .bodyRow:last-of-type {
+    border-bottom: none;
+}
+
+.sectionWorkTable .listBody p {
+    cursor: default;
+    color: var(--grey-2);
+    font-size: var(--font-size-body);
+    letter-spacing: 0.1em;
+    text-align: left;
+    margin: 0;
+}
+
+.sectionWorkTable .listBody ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sectionWorkTable .listBody li {
+    cursor: default;
+    color: var(--grey-1);
+    line-height: var(--line-height-tight);
+    width: fit-content;
+    padding: var(--spacing-small) var(--spacing);
+    border: var(--border_weight-normal) solid var(--grey-1);
+    border-radius: var(--border_radius-full);
+    background-color: transparent;
+}
+
+.sectionWorkTable .tableCaption p {
+    cursor: default;
+    color: var(--grey-4);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    text-align: right;
+    margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .sectionWorkTable .listBody .bodyRow>div:nth-child(1) {
+        width: 22rem;
+    }
+
+    .sectionWorkTable .listBody .bodyRow>div:nth-child(3) {
+        margin-left: auto;
+    }
+
+    .sectionWorkTable .listBody .bodyRow :is(p, li) {
+        transition: 0.2s;
+    }
+
+    .sectionWorkTable .listBody .bodyRow:hover :is(p, li) {
+        color: var(--grey-4);
+    }
+
+    .sectionWorkTable .listBody .bodyRow:hover li {
+        border-color: var(--grey-4);
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+
+    .sectionWorkTable .listHeader {
+        display: none;
+    }
+
+    .sectionWorkTable .listBody .bodyRow {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--spacing-medium) 0;
+        gap: var(--spacing-small);
+    }
+    .sectionWorkTable .listBody .bodyRow>div:nth-child(1) p {
+        color: var(--grey-4);
+    }
+
+    .sectionWorkTable .listBody .bodyRow>div:nth-child(2) {
+        order: 3;
+    }
+
+    .sectionWorkTable .listBody .bodyRow li {
+        font-size: var(--font-size-sub_body);
+    }
+
+    .sectionWorkTable .listBody .bodyRow>div:nth-child(3) p {
+        color: var(--grey-1);
     }
 
 }
