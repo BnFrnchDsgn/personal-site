@@ -559,13 +559,12 @@ header .menuControl button.open div:nth-child(3) {
 
 
 header .menuList {
-
     overflow: hidden;
     position: fixed;
     z-index: 1;
-    inset: 0 -1rem auto auto;
+    inset: -1rem -1rem auto auto;
     width: calc(100% + 2rem);
-    height: calc(100dvh + 1rem);
+    height: calc(100dvh + 2rem);
     margin-top: -1rem;
     background-color: rgba(18, 18, 18, 0.95);
     backdrop-filter: blur(32px) saturate(180%);
@@ -585,7 +584,7 @@ header .menuList ul {
     justify-content: flex-start;
     gap: var(--spacing);
     list-style: none;
-    padding: 8rem var(--spacing);
+    padding: 10rem var(--spacing);
     margin: 0;
 }
 
