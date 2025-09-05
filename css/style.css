@@ -400,7 +400,8 @@ Header
 /* Container */
 
 header {
-    position: relative;
+    position: fixed;
+    inset: var(--spacing) 1rem auto;
     z-index: 1;
     isolation: isolate;
     width: calc(100% - 4rem);
